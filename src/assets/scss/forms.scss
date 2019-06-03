@@ -1,0 +1,8 @@
+.form-input {
+  padding: 15px 10px;
+
+  &.borderless {
+    border: none;
+    outline: none;
+  }
+}

@@ -1,0 +1,24 @@
+@import "../fonts/google/style.css";
+
+@font-face {
+  font-family: "HKGrotesk";
+  src: url("../../assets/fonts/hkgrotesk-medium-web.woff2") format('woff2'),
+  url("../../assets/fonts/hkgrotesk-medium-web.woff") format('woff'),
+  url("../../assets/fonts/hkgrotesk-medium-web.ttf") format('ttf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "HKGrotesk";
+  src: url("../../assets/fonts/hkgrotesk-bold-web.woff2") format('woff2'),
+  url("../../assets/fonts/hkgrotesk-bold-web.woff") format('woff'),
+  url("../../assets/fonts/hkgrotesk-bold-web.ttf") format('ttf');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "HKGrotesk";
+  src: url("../../assets/fonts/hkgrotesk-light-web.woff2") format('woff2'),
+  url("../../assets/fonts/hkgrotesk-light-web.woff") format('woff'),
+  url("../../assets/fonts/hkgrotesk-light-web.ttf") format('ttf');
+}

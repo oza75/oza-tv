@@ -1,0 +1,135 @@
+.image-wrapper {
+  text-align: center;
+  height: 513px !important;
+
+  .img {
+    border-radius: 4px;
+    height: 513px !important;
+  }
+}
+
+.show-page {
+  margin: 0 30px;
+}
+
+.title {
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 5px;
+  color: #0a1627;
+
+  &.with_margin {
+    margin: 20px 0;
+  }
+}
+
+.details-section {
+
+
+  .list-genres {
+    margin-left: 0;
+    padding-left: 0;
+    margin-top: 5px;
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+
+    .genre-item {
+      font-weight: bold;
+      font-size: 16px;
+      margin-right: 5px;
+      color: #2a2c3e;
+      opacity: 0.5;
+
+      &:not(:last-child)::after {
+        content: '/';
+      }
+    }
+  }
+
+  .vote_average {
+    font-weight: 900;
+    font-size: 16px;
+    color: #cc0000;
+  }
+
+  .casting-container, .productions {
+    display: flex;
+    justify-content: flex-start;
+
+  }
+
+  .cast, .productor {
+    width: 50px;
+    height: 50px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  .productor {
+    width: 100% !important;
+    height: auto;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 10px;
+    margin-right: 20px;
+
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+
+  .overview {
+    font-size: 15px;
+    //color: rgba(#2a2c3e, 0.5);
+    color: #40445d;
+    font-weight: bold;
+  }
+}
+
+.list-yt-videos {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 5px;
+  padding-left: 0;
+  list-style: none;
+  justify-content: flex-start;
+
+  .item {
+    margin-right: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 2px rgba(0, 0, 0, 0.08);
+    position: relative;
+
+    .overlay {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(28, 28, 28, 0.9);
+    }
+
+    .img {
+      border-radius: 4px;
+    }
+  }
+}
+
+.yt-frame {
+  width: 853px;
+  height: 480px;
+  @media only screen and (max-width: 768px) {
+    width: 100% !important;
+  }
+}

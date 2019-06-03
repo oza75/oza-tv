@@ -1,0 +1,72 @@
+@import "variable";
+
+.custom-btn {
+  padding: 10px 15px;
+  font-weight: bold;
+  border-radius: 3px;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  transition: all .3s ease;
+
+
+  &.half-rounded {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+  }
+
+  &.link-btn {
+    font-size: 13px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  &.wide {
+    width: 100%;
+  }
+
+  &.btn-success {
+    border-bottom: 2px solid lighten($green, 38%);
+    background-color: $green;
+    color: white;
+
+    &:hover {
+      background-color: darken($green, 10%);
+    }
+  }
+
+  &.tiny {
+    padding: 3px 5px;
+  }
+
+  &.btn-primary {
+    border-bottom: 2px solid lighten($primary, 38%);
+    background-color: $primary;
+    color: white;
+
+    &:hover {
+      background-color: darken($primary, 10%);
+    }
+  }
+
+  &.btn-danger {
+    border-bottom: 2px solid lighten($red, 38%);
+    background-color: $red;
+    color: white;
+
+    &:hover {
+      background-color: darken($red, 10%);
+    }
+  }
+  &.btn-dark {
+    border-bottom: 2px solid lighten(#212330, 38%);
+    background-color: #212330;
+    color: white;
+
+    &:hover {
+      background-color: darken(#212330, 10%);
+    }
+  }
+}

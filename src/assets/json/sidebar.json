@@ -1,0 +1,33 @@
+[
+  {
+    "section": "Principale",
+    "items": [
+      {
+        "text": "Découvrir",
+        "icon": "fas fa-fire",
+        "to": "/"
+      },
+      {
+        "text": "Nouvelles sortie",
+        "icon": "fas fa-box-open",
+        "to": "/new-release"
+      },
+      {
+        "text": "Recommander",
+        "icon": "fas fa-award",
+        "to": "/recommended"
+      },
+      {
+        "text": "A Venir",
+        "icon": "fas fa-bullhorn",
+        "to": "/coming-soon"
+      }
+    ]
+  },
+  {
+    "section": "categories",
+    "hasScroll": true,
+    "items": [],
+    "collections": true
+  }
+]
