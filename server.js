@@ -5,5 +5,5 @@ const path = require('path');
 app = express();
 app.use(history());
 app.use(serveStatic(path.join(__dirname, 'dist')));
-const port = process.env.PORT || 8082;
+const port = process.env.PORT || 80;
 app.listen(port);
