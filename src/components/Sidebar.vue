@@ -38,7 +38,7 @@
         items: Array<any> = []
 
         get appName() {
-            return process.env.VUE_APP_NAME;
+            return "OZA TV";
         }
 
         created() {
