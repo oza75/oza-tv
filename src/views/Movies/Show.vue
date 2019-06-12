@@ -92,32 +92,38 @@
     import axios from 'axios'
     import Video from "@/classes/Video";
     import Storage from "@/classes/Storage";
+    import {description, meta, title} from "@/utils";
 
     @Component({
         components: {Votes, Movie}
     })
     export default class Show extends Vue {
-        name: string = "Show"
-        movie: any = null
-        casting: any = null
-        videos: Array<any> = []
-        currentVid: any = null
-        similars: Array<any> = []
-        similarsPage: number = 1
-        similarsTotalResults: number = 0
-        ticket: any = null
+        name: string = "Show";
+        movie: any = null;
+        casting: any = null;
+        videos: Array<any> = [];
+        currentVid: any = null;
+        similars: Array<any> = [];
+        similarsPage: number = 1;
+        similarsTotalResults: number = 0;
+        ticket: any = null;
+        lastTitle: string | null = null;
+        lastDescription: string | null = null;
 
         @Watch('$route', {immediate: true, deep: true})
         onRouteChanged(route: Route) {
-            let id: any = route.params.id
+            if (!this.lastTitle) this.lastTitle = title.get();
+            if (!this.lastDescription) this.lastDescription = description.get()
+
+            let id: any = route.params.id;
             if (id) this.fetch(id)
         }
 
         @Watch('similarsPage')
         onPageChanged(page: number) {
             if (page) {
-                this.fetchSimilar(this.movie.id, page)
-                let p: HTMLElement | null = document.getElementById('similar-section')
+                this.fetchSimilar(this.movie.id, page);
+                let p: HTMLElement | null = document.getElementById('similar-section');
                 if (p) p.scrollIntoView({behavior: "smooth"});
                 // window.scrollBy({top: p.offsetTop, left: p.offsetLeft, behavior: "smooth"})
             }
@@ -128,14 +134,23 @@
                 this.movie = res.data;
                 TMDb.get(`movie/${this.movie.id}/credits`).then((res: any) => {
                     this.casting = res.data;
-                })
+                });
                 TMDb.get(`movie/${this.movie.id}/videos`).then((res: any) => {
-                    this.videos = res.data.results
+                    this.videos = res.data.results;
                     this.currentVid = this.videos[0] || null
-                })
-
+                    if (this.currentVid) {
+                        meta.add('og:image', this.ytImage(this.currentVid, true))
+                    }
+                });
+                this.setPageInfo();
                 this.fetchSimilar(this.movie.id, 1)
             })
+        }
+
+        setPageInfo() {
+            title.set("[Bande Annonce] " + this.movie.title);
+            description.set(this.movie.overview);
+            meta.add("og:url", window.location.href)
         }
 
         get movieNote() {
@@ -164,8 +179,8 @@
             this.currentVid = vid;
         }
 
-        ytImage(video: any) {
-            return `https://img.youtube.com/vi/${video.key}/3.jpg`
+        ytImage(video: any, large: boolean = false) {
+            return `https://img.youtube.com/vi/${video.key}/${large ? "0" : "3"}.jpg`
         }
 
         fetchSimilar(id: any, page: number) {
