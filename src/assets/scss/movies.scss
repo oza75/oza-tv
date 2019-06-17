@@ -111,6 +111,7 @@
         font-size: 14px;
         color: lighten(#3d3e52, 50%);
       }
+
       .like {
         font-weight: bold;
         background: #E91E63;
@@ -121,15 +122,18 @@
         box-shadow: 0 3px 2px darken(#E91E63, 10%);
         cursor: pointer;
         transition: all .3s ease;
+
         &:hover {
           background-color: darken(#E91E63, 6%);
         }
       }
+
       .crew {
         .job {
           font-weight: bold;
           padding-right: 5px;
         }
+
         .name {
           color: lighten(#3d3e52, 50%);
         }
@@ -161,6 +165,16 @@
   }
 }
 
+.filter-container {
+  margin-left: 1.9rem !important;
+
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: inline-block;
+  }
+}
+
 .movies-container, .similar-container {
   &.grid {
     display: grid;
@@ -176,15 +190,18 @@
     }
   }
 }
+
 .similar-container {
   &.grid {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     padding: 0 0;
   }
+
   .movie {
     .overlay {
       left: 196px !important;
     }
+
     &:nth-child(5n), &:nth-child(5n - 1) {
       .overlay {
         left: unset !important;

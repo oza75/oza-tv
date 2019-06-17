@@ -2,7 +2,8 @@
     <div class="movie" @mouseover="loadCasts">
         <router-link tag="div" :to="{name: 'movies.show', params: {id: movie.id}}">
             <div class="image">
-                <img class="image__img" :src="$root.image(movie.poster_path)"
+                <img class="image__img"
+                     :src="$root.image(movie.poster_path) || require('../assets/images/default_poster.jpg')"
                      :alt="movie.title || movie.original_title">
                 <div class="image-overlay">
                     <i class="far fa-play-circle"></i>
@@ -63,12 +64,14 @@
             // @ts-ignore
             this.$root.addMovieToLikedList(movie)
             this.liked = !this.liked;
+            this.$emit('liked', movie);
         }
 
         removeToLikedList(movie: any) {
             // @ts-ignore
             this.$root.removeMovieToLikedList(movie)
             this.liked = !this.liked;
+            this.$emit('unLiked', movie);
         }
 
         loadCasts() {

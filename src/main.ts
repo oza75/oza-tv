@@ -13,13 +13,17 @@ import 'simplebar'; // or "import SimpleBar from 'simplebar';" if you want to us
 import 'simplebar/dist/simplebar.css';
 // @ts-ignore
 import Autocomplete from 'v-autocomplete'
-
+// @ts-ignore
+import VSelect from 'vue-select';
 // You need a specific loader for CSS files like https://github.com/webpack/css-loader
 import 'v-autocomplete/dist/v-autocomplete.css'
+import 'vue-select/dist/vue-select.css';
 
 Vue.config.productionTip = false
 Vue.component("pagination", require('@/components/Pagination').default)
 Vue.component("list-movies", require('@/components/ListMovies').default)
+Vue.component('v-select', VSelect)
+
 Vue.use(VueCarousel);
 Vue.use(Autocomplete)
 
@@ -29,7 +33,7 @@ new Vue({
     render: h => h(App),
     methods: {
         image(link: string, size: string = "w185") {
-            return url + size + link;
+            return link ? url + size + link : null;
         },
         date(date: string) {
             let d: Date = new Date(date);

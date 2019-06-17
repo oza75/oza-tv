@@ -65,10 +65,10 @@
                 </ul>
             </div>
         </div>
-        <div v-if="released">
+        <div v-if="released && similars.length">
             <div class="row">
                 <div class="col-12 pl-4">
-                    <div class="title with_margin" id="similar-section">Similaire</div>
+                    <div class="title with_margin" id="similar-section">Recommadations</div>
                     <div class="similar-container grid">
                         <Movie :movie="movie" v-for="(movie, t) in similars" :key="'similar-'+t"/>
                     </div>
@@ -185,7 +185,7 @@
 
         fetchSimilar(id: any, page: number) {
             this.similars = [];
-            TMDb.get(`movie/${id}/similar`, [{name: 'page', value: page}]).then((res: any) => {
+            TMDb.get(`movie/${id}/recommendations`, [{name: 'page', value: page}]).then((res: any) => {
                 this.similars = res.data.results;
                 this.similarsTotalResults = res.data.total_results;
                 this.similarsPage = res.data.page;
@@ -195,7 +195,6 @@
 
         get width() {
             let len: number = this.movie.production_companies.length;
-            console.log(len);
             if (len > 4) {
                 return "w45";
             } else if (len > 2) {
@@ -203,6 +202,11 @@
             } else {
                 return "w185";
             }
+        }
+
+        destroyed() {
+            if (this.lastTitle) title.set(this.lastTitle);
+            if (this.lastDescription) description.set(this.lastDescription);
         }
     }
 </script>

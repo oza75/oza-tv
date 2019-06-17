@@ -1,6 +1,6 @@
 <template>
     <div class="coming-soon">
-        <list-movies url="movie/upcoming"/>
+        <list-movies url="movie/upcoming" :sortable="false"/>
     </div>
 </template>
 

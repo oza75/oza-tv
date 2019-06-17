@@ -3,7 +3,7 @@
     "section": "Principale",
     "items": [
       {
-        "text": "Découvrir",
+        "text": "Tendances",
         "icon": "fas fa-fire",
         "to": "/"
       },
