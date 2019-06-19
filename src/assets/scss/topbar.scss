@@ -19,21 +19,24 @@
     justify-content: center;
     align-items: center;
 
+    $color: #192a56;
+
     .list-type {
-      background-color: white;
-      border: 1px solid darken(white, 20%);
-      color: #212330;
       cursor: pointer;
       padding: 15px 20px;
-      font-size: 20px;
+      font-size: 16px;
       text-align: center;
+      font-weight: bold;
+      border: 1px solid $color;
+      color: $color;
+      transition: all .3s;
 
       &:not(:first-child) {
         border-left: none;
       }
 
       &.active {
-        background-color: #212330;
+        background-color: $color;
         color: white;
       }
     }

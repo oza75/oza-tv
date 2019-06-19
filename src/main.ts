@@ -15,6 +15,8 @@ import 'simplebar/dist/simplebar.css';
 import Autocomplete from 'v-autocomplete'
 // @ts-ignore
 import VSelect from 'vue-select';
+// @ts-ignore
+import VTooltip from 'v-tooltip'
 // You need a specific loader for CSS files like https://github.com/webpack/css-loader
 import 'v-autocomplete/dist/v-autocomplete.css'
 import 'vue-select/dist/vue-select.css';
@@ -23,9 +25,10 @@ Vue.config.productionTip = false
 Vue.component("pagination", require('@/components/Pagination').default)
 Vue.component("list-movies", require('@/components/ListMovies').default)
 Vue.component('v-select', VSelect)
-
+Vue.component('inline-select', require("@/components/InlineSelect").default)
 Vue.use(VueCarousel);
 Vue.use(Autocomplete)
+Vue.use(VTooltip)
 
 new Vue({
     router,

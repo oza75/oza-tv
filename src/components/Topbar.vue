@@ -8,14 +8,11 @@
 
         <div class="left-side">
             <div class="list-type-container">
-                <div class="list-type">
-                    <i class="fas fa-list"></i>
-                </div>
                 <div class="list-type active">
-                    <i class="fas fa-th-large"></i>
+                    Films
                 </div>
                 <div class="list-type">
-                    <i class="fas fa-file"></i>
+                    Séries
                 </div>
             </div>
         </div>

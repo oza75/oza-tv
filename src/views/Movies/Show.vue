@@ -15,7 +15,7 @@
                     <Votes :note="movieNote" color="#ffbc38"/>
                 </div>
                 <span class="vote_average pl-3">{{movie.vote_average}}</span>
-                <h3 class="title with_margin ">Le casting</h3>
+                <h3 class="title with_margin " id="casting">Le casting</h3>
 
                 <carousel :per-page="9" :pagination-enabled="false"
                           navigation-next-label="<i class='fas fa-long-arrow-alt-right fa-2x'></i>"
@@ -23,9 +23,7 @@
                           :navigation-enabled="true"
                           class="casting-container">
                     <slide class="" v-for="(cast, n) in casts" :key="'cast-'+n">
-                        <div class="cast" :title="cast.name"
-                             :style="`background-image: url(${$root.image(cast.profile_path, 'w342')})`">
-                        </div>
+                        <CastPopover :cast="cast" :index="n"/>
                     </slide>
                 </carousel>
 
@@ -45,6 +43,7 @@
                 </span>
             </div>
         </div>
+
         <div class="row" v-if="videos.length">
             <div class="col-12 pl-4">
                 <div class="title with_margin">Bande D'annonce</div>
@@ -65,6 +64,7 @@
                 </ul>
             </div>
         </div>
+
         <div v-if="released && similars.length">
             <div class="row">
                 <div class="col-12 pl-4">
@@ -89,13 +89,12 @@
     import TMDb from "@/classes/TMDb";
     import Votes from "@/components/Votes.vue";
     import Movie from "@/components/Movie.vue";
-    import axios from 'axios'
-    import Video from "@/classes/Video";
     import Storage from "@/classes/Storage";
     import {description, meta, title} from "@/utils";
+    import CastPopover from "@/components/Movie/CastPopover.vue";
 
     @Component({
-        components: {Votes, Movie}
+        components: {Votes, Movie, CastPopover}
     })
     export default class Show extends Vue {
         name: string = "Show";
@@ -144,6 +143,7 @@
                 });
                 this.setPageInfo();
                 this.fetchSimilar(this.movie.id, 1)
+                window.scrollTo({behavior: "smooth", top: 0, left: 0})
             })
         }
 

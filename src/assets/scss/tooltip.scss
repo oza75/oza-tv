@@ -1,0 +1,38 @@
+.tooltip {
+  &.popover {
+    $color: #fff;
+
+    &.bottom {
+      .popover-inner {
+        &:before {
+          content: ' ';
+          width: 0;
+          height: 0;
+          border-left: 15px solid transparent;
+          border-right: 15px solid transparent;
+          border-bottom: 20px solid $color;
+          background-color: transparent;
+          position: absolute;
+          top: -30px;
+          left: 50%;
+          transform: translateX(-50%) translateY(67%);
+        }
+      }
+    }
+
+    .popover-inner {
+      background: $color;
+      color: black;
+      padding: 24px;
+      border-radius: 5px;
+      box-shadow: 0 5px 30px rgba(black, .1);
+      position: relative;
+
+
+    }
+
+    .popover-arrow {
+      border-color: $color;
+    }
+  }
+}

@@ -4,6 +4,7 @@
 @import "movies";
 @import "buttons";
 @import "alert";
+@import "tooltip";
 
 html {
   font-size: 15px;
@@ -14,6 +15,7 @@ html {
 }
 
 body {
+  overflow-x: hidden;
   margin: 0;
   padding: 0;
   color: #000;
@@ -96,4 +98,17 @@ body {
   margin-left: 0;
   padding-left: 0;
   list-style: none;
+}
+
+.route-animation-enter-active,
+.route-animation-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.route-animation-enter,
+.route-animation-leave-active {
+  opacity: 0;
+  //transform: translateY(50%);
 }

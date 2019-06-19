@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <list-movies url="trending/movie/week"  :sortable="false"/>
+        <list-movies url="trending/movie/day"  :sortable="false"/>
     </div>
 </template>
 

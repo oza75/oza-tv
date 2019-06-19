@@ -12,9 +12,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 pl-4 pr-4 pt-4 pb-4">
-                            <router-view/>
-                        </div>
+                        <main class="col-12 pl-4 pr-4 pt-4 pb-4">
+                            <transition mode="out-in" :duration="300" name="route-animation">
+                                <router-view/>
+                            </transition>
+                        </main>
                     </div>
                 </div>
             </div>
