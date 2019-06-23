@@ -9,10 +9,11 @@
             </div>
         </div>
 
-        <transition-group name="route-animation" tag="div" class="movies-container grid">
-            <Movie @liked="liked" @un-liked="unLiked"
-                   v-for="(movie, k) in movies" :key="'movie-'+k"
-                   :movie="movie"/>
+        <transition-group name="route-animation" tag="div" class="grid"
+                          :class="{'movies-container': !isSimilar, 'similar-container': isSimilar}">
+            <component :is="component" @liked="liked" @un-liked="unLiked"
+                       v-for="(movie, k) in movies" :key="'movie-'+k"
+                       :movie="movie"/>
         </transition-group>
 
         <div class="pagination-container">
@@ -26,13 +27,20 @@
     import TMDb, {Query} from "@/classes/TMDb";
     import {lang, mapGenre} from "@/utils";
     import Movie from "@/components/Movie.vue";
+    import Tv from "@/components/Tv.vue";
     import {Route} from "vue-router";
+    import DataType from "@/classes/DataType";
 
     @Component({components: {Movie}})
     export default class ListMovies extends Vue {
         @Prop({required: true}) url!: string;
         @Prop({default: () => ([])}) queries!: Array<any>
         @Prop({default: true}) sortable !: boolean
+        @Prop({default: false}) isSimilar !: boolean
+        @Prop({
+            default: () => {
+            }
+        }) likedCallback !: Function
         name: string = "ListMovies"
         page: number | null = null;
         totalPage: number = 0;
@@ -40,6 +48,7 @@
         movies: Array<any> = [];
         sort: any = {name: "Popularité", value: "popularity"}
         type: string = "desc"
+        dataType: any = DataType
 
         fetch(page: number) {
             this.movies = [];
@@ -63,6 +72,10 @@
                     this.totalResults = 20 * 1000;
                 }
             })
+        }
+
+        get component() {
+            return this.dataType.value === 'tv' ? Tv : Movie
         }
 
         @Watch('$route', {immediate: true, deep: true})
@@ -133,6 +146,9 @@
         }
 
         liked(movie: any) {
+            if (this.likedCallback) {
+                this.likedCallback(movie, this.movies)
+            }
             this.$emit('liked', movie)
         }
 

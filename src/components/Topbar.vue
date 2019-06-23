@@ -7,12 +7,12 @@
         </div>
 
         <div class="left-side">
-            <div class="list-type-container">
-                <div class="list-type active">
-                    Films
-                </div>
-                <div class="list-type">
-                    Séries
+            <div class="list-type-container" id="list-type-container">
+                <div id="type-of-content" class="mr-4"></div>
+                <div class="list-type" :id="`list-type-${j}`" :class="{active: dataType.value === item.value}"
+                     @click="dataType.setValue(item.value)"
+                     :key="'type-'+j" v-for="(item, j) in types">
+                    {{item.name}}
                 </div>
             </div>
         </div>
@@ -23,11 +23,13 @@
     import {Vue, Component, Watch} from 'vue-property-decorator'
     import TMDb from "@/classes/TMDb";
     import SearchBar from "@/components/SearchBar.vue";
+    import DataType from "@/classes/DataType";
 
     @Component({components: {SearchBar}})
     export default class Topbar extends Vue {
         name: string = "Topbar"
         title: string = 'OZA TV';
+        dataType: any = DataType;
 
         @Watch('$route', {immediate: true})
         onRouteChanged() {
@@ -37,6 +39,14 @@
                 })
             } else this.title = this.$route.meta.title
         }
+
+        get types() {
+            return [
+                {name: 'Films', value: 'movie'},
+                {name: 'Séries', value: 'tv'}
+            ]
+        }
+
     }
 </script>
 

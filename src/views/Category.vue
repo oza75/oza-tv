@@ -1,6 +1,6 @@
 <template>
     <div class="category">
-        <list-movies url="discover/movie" :queries="query"/>
+        <list-movies :url="`discover/${$root.dataType}`" :queries="query"/>
     </div>
 </template>
 

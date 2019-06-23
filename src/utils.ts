@@ -59,3 +59,13 @@ export const meta = {
         }
     }
 }
+
+export const now = () => {
+    let d: Date = new Date();
+    let str = d.getFullYear() + '-' + digit(d.getMonth()) + '-' + digit(d.getDay())
+    return str;
+}
+
+export const digit = (n: any) => {
+    return ("0" + n).slice(-2)
+}

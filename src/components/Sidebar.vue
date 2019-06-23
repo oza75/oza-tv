@@ -13,7 +13,7 @@
                 </span>
                 <ul class="list" :data-simplebar="item.hasScroll">
                     <li v-for="(link, k) in item.items" :key="'link-'+k">
-                        <router-link :to="link.to" :class="{active: $route.path === link.to}" class="item">
+                        <router-link  :id="link.id" :to="link.to" :class="{active: $route.path === link.to}" class="item">
                             <i :class="link.icon" class="icon"></i>
                             <span class="text">{{link.text}}</span>
                         </router-link>

@@ -4,19 +4,21 @@
                    class="bg-transparent">
             <!-- This will be the popover target (for the events and position) -->
             <div class="cast" :title="cast.name" @mouseover="setPlacement"
-                 :style="`background-image: url(${$root.image(cast.profile_path, 'w342')})`">
+                 :style="`background-image: url(${$root.image(cast.profile_path, 'w342') || require('../../assets/images/profile2.png') })`">
             </div>
 
             <!-- This will be the content of the popover -->
             <template slot="popover">
                 <div class="d-flex info-wrapper" ref="content">
-                    <img class="img" :src="$root.image(cast.profile_path, 'w185')" :alt="`Photo de ${cast.character}`">
+                    <img class="img"
+                         :src="$root.image(cast.profile_path, 'w185') || require('../../assets/images/profile2.png')"
+                         :alt="`Photo de ${cast.character}`">
                     <div class="content">
                         <h3 class="character">{{cast.character}}</h3>
                         <p class="name">Interpreté par : <a href="#" class="cast-name">{{cast.name}}</a></p>
                         <div class="known-for-section">
                             <h3 class="title">Connu Pour</h3>
-                            <div class="movies-section">
+                            <transition-group name="route-animation" tag="div" class="movies-section">
                                 <router-link :to="{name: 'movies.show', params: {id: item.id}}" class="item"
                                              :title="item.title" v-for="(item, k) in knowForMovies" :key="'item-'+k">
                                     <img :src="$root.image(item.poster_path, 'w185')" alt="" class="img">
@@ -24,7 +26,7 @@
                                         {{item.title}}
                                     </div>
                                 </router-link>
-                            </div>
+                            </transition-group>
                         </div>
                     </div>
                 </div>
@@ -100,6 +102,7 @@
     .info-wrapper {
         .img {
             width: 185px;
+            height: 278px;
             margin-right: 8px;
         }
 

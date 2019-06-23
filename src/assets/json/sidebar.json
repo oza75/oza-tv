@@ -8,14 +8,25 @@
         "to": "/"
       },
       {
-        "text": "Nouvelles sortie",
+        "text": "Découvrir",
+        "icon": "fab fa-wpexplorer",
+        "to": "/discover"
+      },
+      {
+        "text": "Au cinéma",
         "icon": "fas fa-box-open",
-        "to": "/new-release"
+        "to": "/news-release"
       },
       {
         "text": "Recommander",
         "icon": "fas fa-award",
-        "to": "/recommended"
+        "to": "/recommended",
+        "id": "recommended-movies"
+      },
+      {
+        "text": "Mes Favoris",
+        "icon": "fas fa-heart",
+        "to": "/favorites"
       },
       {
         "text": "A Venir",

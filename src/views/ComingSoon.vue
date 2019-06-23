@@ -1,6 +1,6 @@
 <template>
     <div class="coming-soon">
-        <list-movies url="movie/upcoming" :sortable="false"/>
+        <list-movies url="movie/upcoming" :sortable="false" :queries="[{name: 'region', value: ''}]"/>
     </div>
 </template>
 
@@ -10,6 +10,10 @@
     @Component
     export default class ComingSoon extends Vue {
         name: string ="ComingSoon"
+
+        get region () {
+            return 'ma'
+        }
     }
 </script>
 

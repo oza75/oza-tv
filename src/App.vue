@@ -69,6 +69,46 @@
                     }
                 }
             })
+            Vue.nextTick(() => {
+                this.tour()
+            })
+        }
+
+        tour() {
+            if (!Storage.has('tour-finished')) {
+                // @ts-ignore
+                let productTour = new ProductTour({
+                    overlay: true,
+                    onClosed: function (e: any) {
+                        Storage.put('tour-finished', 1)
+                    },
+                    next: 'Suivant', // optional defaults: 'Next'
+                    prev: 'Précedent', // optional defaults: 'Previous'
+                    of: 'sur', // optional defaults: 'of'
+                    html: true// optional (true || false) defaults: false
+                });
+                let content: string = `
+                  Ici vous trouver des suggestions de films/séries selon ce que vous aimez.\n
+                  Plus vous aimez des films ou séries qui vous plaisent plus
+                  vos recommendation seront pertinentes.
+                `
+
+                productTour.steps([
+                    {
+                        element: '#type-of-content',
+                        title: "Type de contenu",
+                        content: `Vous pouvez maintenant switcher entre les films et les séries
+                        ici pour changer le type de contenu`,
+                        position: "bottom"
+                    }, {
+                        element: '#recommended-movies',
+                        title: "Recommendation",
+                        content: content,
+                        position: "right"
+                    }
+                ])
+                productTour.startTour()
+            }
         }
     }
 </script>

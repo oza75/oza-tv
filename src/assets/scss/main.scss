@@ -5,7 +5,7 @@
 @import "buttons";
 @import "alert";
 @import "tooltip";
-
+@import "product-tour";
 html {
   font-size: 15px;
 }
@@ -111,4 +111,50 @@ body {
 .route-animation-leave-active {
   opacity: 0;
   //transform: translateY(50%);
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.badge {
+  padding: 7px 10px;
+
+  &.tiny {
+    padding: 3px 5px;
+    font-size: 12px;
+  }
+
+  &.blue {
+    background-color: #0051ff;
+    color: white;
+  }
+
+  &.rounded {
+    border-radius: 4px;
+  }
+
+  &.yellow {
+    background-color: lighten($yellow, 20%);
+    color: darken($yellow, 30%);
+  }
+}
+.like {
+  font-weight: bold;
+  background: #E91E63;
+  display: inline-block;
+  color: white;
+  padding: 7px 10px;
+  border-radius: 3px;
+  box-shadow: 0 3px 2px darken(#E91E63, 10%);
+  cursor: pointer;
+  transition: all .3s ease;
+
+  &:hover {
+    background-color: darken(#E91E63, 6%);
+  }
 }

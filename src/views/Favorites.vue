@@ -6,7 +6,7 @@
                     <div class="alert default has-icon">
                         <div class="icon"><i class="fas fa-info"></i></div>
                         <div class="content">
-                            Commencer par aimez plus de {{left < 0 ? 0 : left}} films pour avoir des recommandations.
+                            Commencer par aimez plus de {{left < 0 ? 0 : left}} films d'abord.
                             <br>
                             Plus Vous aimez les films que vous aimez, plus vos recommandations seront pertinentes.
                         </div>
@@ -26,38 +26,36 @@
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 
 <script lang="ts">
     import {Vue, Component, Watch} from 'vue-property-decorator'
-    import Storage from "../classes/Storage";
-    import Movie from "../components/Movie.vue";
-    import {Route} from "vue-router";
-    import ListMovies from "@/components/ListMovies.vue";
     import DataType from "@/classes/DataType";
+    import ListMovies from "@/components/ListMovies.vue";
+    import Movie from "@/components/Movie.vue";
     import Tv from "@/components/Tv.vue";
+    import {Route} from "vue-router";
     import TMDb from "@/classes/TMDb";
+    import Storage from "@/classes/Storage";
 
     @Component({
         components: {Movie, ListMovies}
     })
-    export default class Recommended extends Vue {
-        name: string = "Recommended"
+    export default class Favorites extends Vue {
+        name: string = "Favorites"
+        type: any = DataType
         page: number = 1
         perPage: number = 20
         pageMovies: Array<any> = []
         left: number = 5
         url: string = 'discover/movie'
-        type: any = DataType
         movies: Array<any> = []
 
         fetchMovies() {
-            let data: any = Storage.get('recommended', {})
+            let data: any = Storage.get('liked-list', {})
             this.movies = data[this.type.value === 'tv' ? 'tv' : 'movies'] || []
         }
-
 
         get chunks() {
             // @ts-ignore
@@ -73,25 +71,11 @@
             window.scrollTo(0, 0)
         }
 
-        @Watch('page')
-        onPageChanged(page: number) {
-            // @ts-ignore
-            this.$router.push({name: this.$route.name, query: {page}})
-        }
-
         @Watch('$route', {immediate: true})
         onRouteChanged(route: Route) {
             this.url = this.type.value === 'tv' ? `discover/tv` : `discover/movie`
             this.fetchMovies()
             this.fetch(this.page)
-        }
-
-        @Watch('type', {deep: true})
-        onTypeChanged(type: any) {
-            this.url = this.type.value === 'tv' ? `discover/tv` : `discover/movie`
-            this.page = 1
-            this.fetchMovies()
-            this.pageMovies = this.chunks[this.page - 1]
         }
 
         likedCallback(movie: any, movies: Array<any>) {
@@ -112,9 +96,23 @@
             this.left = this.left - 1;
             this.likedCallback(movie, this.movies)
         }
+
+        @Watch('page')
+        onPageChanged(page: number) {
+            // @ts-ignore
+            this.$router.push({name: this.$route.name, query: {page}})
+        }
+
+        @Watch('type', {deep: true})
+        onTypeChanged(type: any) {
+            this.url = this.type.value === 'tv' ? `discover/tv` : `discover/movie`
+            this.page = 1
+            this.fetchMovies()
+            this.pageMovies = this.chunks[this.page - 1]
+        }
     }
 </script>
 
-<style scoped>
+<style scoped lang="ts">
 
 </style>

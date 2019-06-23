@@ -112,21 +112,7 @@
         color: lighten(#3d3e52, 50%);
       }
 
-      .like {
-        font-weight: bold;
-        background: #E91E63;
-        display: inline-block;
-        color: white;
-        padding: 7px 10px;
-        border-radius: 3px;
-        box-shadow: 0 3px 2px darken(#E91E63, 10%);
-        cursor: pointer;
-        transition: all .3s ease;
 
-        &:hover {
-          background-color: darken(#E91E63, 6%);
-        }
-      }
 
       .crew {
         .job {
